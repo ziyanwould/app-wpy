@@ -1,0 +1,228 @@
+<style lang="less">
+  /**index.wxss**/
+  .userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userinfo-avatar {
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+  }
+
+  .userinfo-nickname {
+    color: #aaa;
+  }
+
+  .usermotto {
+    margin-top: 200px;
+  }
+
+  .list{
+    width: 100%;
+    background: #fff;
+  }
+  .list-item{
+    height: 120rpx;
+    text-align: center;
+    padding-top: 5px;
+    float: left;
+  }
+  .list-item-left{
+    width:20%;
+  }
+  .list-item-right{
+    width:20%;
+    font-size: 40rpx;
+    color:salmon;
+    font-weight: bold;
+    line-height: 40rpx;
+  }
+  .list-item-middle{
+    width:60%;
+    font-size: 30rpx;
+    text-align: left;
+  }
+  .f30{
+    font-size: 30rpx;
+  }
+  .f-b{
+    font-weight: bold;
+  }
+  .f-black{
+    color: black;
+  }
+  .f-gray{
+    color: gray;
+  }
+  .banner{
+    width: 100%;
+    position: relative;
+
+  }
+  .baCount{
+    position: absolute;
+    z-index: 10;
+    top: 0;
+
+  }
+  .baCount img{
+    height: 136rpx
+  }
+</style>
+<template>
+  <!--index.wxml-->
+  <!--<view class="container">
+  <view class="section">
+    <input type="text" class="input" placeholder-class="input-place" placeholder="搜索职位/公司/商区"/>
+  </view>
+    <view  bindtap="bindViewTap" class="userinfo">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </view>-->
+  <!-- <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+  <!-- </view> -->
+  <view class='banner'>
+    <image src="../../images/banner_rc.png"  mode="widthFix"
+           style="width:100%;background-color:black;"  ></image>
+    <!-- <view class='baCount'>
+       <image src='../../images/logo.png'></image>
+        <input type="text" class="input" placeholder-class="input-place" placeholder="收索公司/职位"/>
+    </view> -->
+  </view>
+  <view class="list" wx:for="{{jobList}}" wx:key="item.id">
+    <view class="list-item list-item-left" >
+      <image style="width:100rpx;height:100rpx;" src="{{item.jobUrl}}"/>
+    </view>
+    <view class="list-item list-item-middle">
+      <view class="f-b f-black">{{item.jobName}}</view>
+      <view class="f-gray">{{item.companyName}}</view>
+      <view class="f-gray">{{item.requrie}}</view>
+    </view>
+    <view class="list-item list-item-right">
+      <view>{{item.jobSalary}}</view>
+      <view class="f-gray f30"> {{item.createTime}}</view>
+
+    </view>
+  </view>
+  <!-- <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
+          disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover"> default </button>
+  <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+          disabled="{{disabled}}" bindtap="primary"> primary </button>
+  <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}"
+          disabled="{{disabled}}" bindtap="warn"> warn </button>
+  <button bindtap="setDisabled">点击设置以上按钮disabled属性</button>
+  <button bindtap="setPlain">点击设置以上按钮plain属性</button>
+  <button bindtap="setLoading">点击设置以上按钮loading属性</button>-->
+
+</template>
+
+<script>
+  //index.js
+  //获取应用实例
+  var app = getApp()
+  Page( {
+    data: {
+      motto: '欢迎',
+      userInfo: {},
+      jobList: [
+        {
+          id: "1",
+          jobUrl: "http://www.lgstatic.com/thumbnail_160x160/image1/M00/00/08/CgYXBlTUWA-AeZa7AACzZLV9LMM813.jpg",
+          jobName: "架构师",
+          companyName: "华为技术有限公司",
+          requrie: "深圳 坂田 5-10年 本科",
+          jobSalary: "18k-30k",
+          createTime:"09月29日"
+        },
+        {
+          id: "2",
+          jobUrl: "http://www.lgstatic.com/thumbnail_160x160/i/image/M00/42/00/CgqKkVd-FeGAF2VWAAFrO0JapSo547.jpg",
+          jobName: "架构师",
+          companyName: "万家医疗",
+          requrie: "深圳 福田 5-10年 本科",
+          jobSalary: "20k-35k",
+          createTime:"09月29日"
+        }, {
+          id: "3",
+          jobUrl: "http://www.lgstatic.com/thumbnail_160x160/image2/M00/05/ED/CgpzWlX4yUeAKA4CAAB5b0H0iBY944.JPG",
+          jobName: "架构师",
+          companyName: "平安科技",
+          requrie: "深圳 福田 5-10年 本科",
+          jobSalary: "15k-30k",
+          createTime:"09月29日"
+        }, {
+          id: "4",
+          jobUrl: "http://www.lgstatic.com/thumbnail_300x300/i/image/M00/50/7B/CgqKkVe0Dx6AN1VNAACZSXFNTAI460.png",
+          jobName: "架构师",
+          companyName: "信美分期",
+          requrie: "深圳 福田 5-10年 本科",
+          jobSalary: "25k-40k",
+          createTime:"09月29日"
+        }, {
+          id: "5",
+          jobUrl: "http://www.lgstatic.com/thumbnail_160x160/image1/M00/00/73/Cgo8PFTUXZuARUuOAABlvEsqXqE644.png",
+          jobName: "架构师",
+          companyName: "我来贷WeWeLab",
+          requrie: "深圳 福田 5-10年 本科",
+          jobSalary: "20k-30k",
+          createTime:"09月29日"
+        }, {
+          id: "6",
+          jobUrl: "http://www.lgstatic.com/thumbnail_160x160/image2/M00/05/ED/CgpzWlX4yUeAKA4CAAB5b0H0iBY944.JPG",
+          jobName: "架构师",
+          companyName: "平安科技",
+          requrie: "深圳 福田 5-10年 本科",
+          jobSalary: "15k-30k",
+          createTime:"09月28日"
+        }, {
+          id: "7",
+          jobUrl: "http://www.lgstatic.com/thumbnail_300x300/i/image/M00/50/7B/CgqKkVe0Dx6AN1VNAACZSXFNTAI460.png",
+          jobName: "架构师",
+          companyName: "信美分期",
+          requrie: "深圳 福田 5-10年 本科",
+          jobSalary: "25k-40k",
+          createTime:"09月29日"
+        }, {
+          id: "8",
+          jobUrl: "http://www.lgstatic.com/thumbnail_160x160/image2/M00/05/ED/CgpzWlX4yUeAKA4CAAB5b0H0iBY944.JPG",
+          jobName: "架构师",
+          companyName: "平安科技",
+          requrie: "深圳 福田 5-10年 本科",
+          jobSalary: "15k-30k",
+          createTime:"09月28日"
+        }, {
+          id: "9",
+          jobUrl: "http://www.lgstatic.com/thumbnail_300x300/i/image/M00/50/7B/CgqKkVe0Dx6AN1VNAACZSXFNTAI460.png",
+          jobName: "架构师",
+          companyName: "信美分期",
+          requrie: "深圳 福田 5-10年 本科",
+          jobSalary: "25k-40k",
+          createTime:"09月29日"
+        }
+      ]
+    },
+    //事件处理函数
+    bindViewTap: function() {
+      wx.navigateTo( {
+        url: '../detail/detail'
+      })
+    },
+    onLoad: function() {
+      console.log( 'onLoad' )
+      var that = this
+      //调用应用实例的方法获取全局数据
+      app.getUserInfo( function( userInfo ) {
+        //更新数据
+        that.setData( {
+          userInfo: userInfo
+        })
+      })
+    }
+  })
+</script>
